@@ -50,6 +50,7 @@ function ZodiacCard({ sign }) {
             ref={imageRef}
             src={sign.image}
             className="zodiac-image object-contain rounded-[1rem]"
+            alt=""
           />
         </div>
         <div ref={descriptionRef} className="flex flex-col">
@@ -72,6 +73,7 @@ function ZodiacCard({ sign }) {
             ref={imageRef}
             src={sign.image}
             className="zodiac-image object-contain rounded-[1rem]"
+            alt=""
           />
         </div>
       </>
