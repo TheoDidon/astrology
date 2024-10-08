@@ -18,7 +18,6 @@ function ZodiacCard({ sign }) {
         toggleActions: "play none none reverse",
         start: "top 50%",
         end: "bottom 50%",
-        markers: true,
       },
     });
     tl.from(imageRef.current, {
