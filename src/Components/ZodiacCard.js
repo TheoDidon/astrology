@@ -53,7 +53,7 @@ function ZodiacCard({ sign }) {
           />
         </div>
         <div ref={descriptionRef} className="flex flex-col">
-          <p className="font-bold text-4xl">{sign.name}</p>
+          <p className="font-bold text-4xl mb-4">{sign.name}</p>
           <p className="text-xl">{sign.description}</p>
         </div>
       </>
@@ -64,7 +64,7 @@ function ZodiacCard({ sign }) {
     return (
       <>
         <div ref={descriptionRef} className="flex flex-col">
-          <p className="font-bold text-4xl">{sign.name}</p>
+          <p className="font-bold text-4xl mb-4">{sign.name}</p>
           <p className="text-xl">{sign.description}</p>
         </div>
         <div className="mx-4">

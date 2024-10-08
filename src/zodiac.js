@@ -56,7 +56,7 @@ export const zodiac = {
       "Intense and passionate, Scorpios are known for their emotional depth and strong intuition. They are determined and resourceful but can be secretive or possessive",
   },
   sagittarius: {
-    name: "sagittarius",
+    name: "Sagittarius",
     position: "left",
     image: "/astrology/assets/sagittarius.png",
     description:
