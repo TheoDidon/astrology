@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,15 +7,28 @@ gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 function ZodiacCard({ sign }) {
+  const [isMobile, setIsMobile] = useState(false);
   const imageRef = useRef(null);
   const containerRef = useRef(null);
   const descriptionRef = useRef(null);
+
+  const checkMobileScreen = () => {
+    setIsMobile(window.innerWidth < 550);
+  };
+
+  useEffect(() => {
+    checkMobileScreen();
+    window.addEventListener("resize", checkMobileScreen);
+    return () => {
+      window.removeEventListener("resize", checkMobileScreen);
+    };
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        toggleActions: "play none none reverse",
+        toggleActions: "play reverse play reverse",
         start: "top 50%",
         end: "bottom 50%",
       },
@@ -34,7 +47,7 @@ function ZodiacCard({ sign }) {
       duration: 1,
     });
     tl.to(imageRef.current, {
-      y: 15,
+      y: -15,
       repeat: -1,
       yoyo: true,
       duration: 0.5,
@@ -44,7 +57,7 @@ function ZodiacCard({ sign }) {
 
   function leftImage() {
     return (
-      <>
+      <div className="flex items-center mx-4">
         <div className="mx-4">
           <img
             ref={imageRef}
@@ -57,13 +70,13 @@ function ZodiacCard({ sign }) {
           <p className="font-bold text-4xl mb-4">{sign.name}</p>
           <p className="text-xl">{sign.description}</p>
         </div>
-      </>
+      </div>
     );
   }
 
   function rightImage() {
     return (
-      <>
+      <div className="flex items-center mx-4">
         <div ref={descriptionRef} className="flex flex-col">
           <p className="font-bold text-4xl mb-4">{sign.name}</p>
           <p className="text-xl">{sign.description}</p>
@@ -76,12 +89,38 @@ function ZodiacCard({ sign }) {
             alt=""
           />
         </div>
-      </>
+      </div>
+    );
+  }
+
+  function mobileDisplay() {
+    return (
+      <div className="flex flex-col items-start justify-start mx-4">
+        <div className="">
+          <img
+            ref={imageRef}
+            src={sign.image}
+            className="zodiac-image object-contain rounded-[1rem]"
+            alt=""
+          />
+        </div>
+        <div ref={descriptionRef} className="flex flex-col my-4">
+          <p className="font-bold text-4xl mb-4">{sign.name}</p>
+          <p className="text-xl">{sign.description}</p>
+        </div>
+      </div>
     );
   }
   return (
-    <div ref={containerRef} className="flex max-h-[40vh] my-36 mx-12 ">
-      {sign.position === "left" ? leftImage() : rightImage()}
+    <div
+      ref={containerRef}
+      className="flex flex-col max-h-[40vh] my-36 mx-12 lg:max-w-[50vw] "
+    >
+      {isMobile
+        ? mobileDisplay()
+        : sign.position === "left"
+        ? leftImage()
+        : rightImage()}
     </div>
   );
 }

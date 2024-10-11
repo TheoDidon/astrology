@@ -15,9 +15,11 @@ function Home() {
     <main className="flex flex-col overflow-hidden">
       <Navbar />
       <Description />
-      {Object.values(zodiac).map((z, index) => (
-        <ZodiacCard key={index} sign={z} />
-      ))}
+      <div className="flex flex-col justify-center items-center">
+        {Object.values(zodiac).map((z, index) => (
+          <ZodiacCard key={index} sign={z} />
+        ))}
+      </div>
       <Footer />
     </main>
   );
