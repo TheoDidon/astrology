@@ -29,30 +29,52 @@ function ZodiacCard({ sign }) {
       scrollTrigger: {
         trigger: containerRef.current,
         toggleActions: "play reverse play reverse",
-        start: "top 50%",
-        end: "bottom 50%",
+        start: "top 60%",
+        end: "bottom 30%",
+        markers: true,
       },
     });
-    tl.from(imageRef.current, {
-      y: 500,
-      duration: 1,
-      opacity: 0,
-      rotate: 90,
-      scale: 2,
-    });
+    if (isMobile) {
+      tl.from(imageRef.current, {
+        y: -100,
+        duration: 1,
+        opacity: 0,
+        scale: 0,
+      });
 
-    tl.from(descriptionRef.current, {
-      x: 200,
-      opacity: 0,
-      duration: 1,
-    });
-    tl.to(imageRef.current, {
-      y: -15,
-      repeat: -1,
-      yoyo: true,
-      duration: 0.5,
-      ease: "ease-in-out",
-    });
+      tl.from(descriptionRef.current, {
+        x: 200,
+        opacity: 0,
+        duration: 1,
+      });
+
+      tl.to(imageRef.current, {
+        y: -15,
+        repeat: -1,
+        yoyo: true,
+      });
+    } else {
+      tl.from(imageRef.current, {
+        y: 500,
+        duration: 1,
+        opacity: 0,
+        rotate: 90,
+        scale: 2,
+      });
+
+      tl.from(descriptionRef.current, {
+        x: 200,
+        opacity: 0,
+        duration: 1,
+      });
+      tl.to(imageRef.current, {
+        y: -15,
+        repeat: -1,
+        yoyo: true,
+        duration: 0.5,
+        ease: "ease-in-out",
+      });
+    }
   });
 
   function leftImage() {
