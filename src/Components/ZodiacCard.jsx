@@ -31,7 +31,6 @@ function ZodiacCard({ sign }) {
         toggleActions: "play reverse play reverse",
         start: "top 60%",
         end: "bottom 30%",
-        markers: true,
       },
     });
     if (isMobile) {
