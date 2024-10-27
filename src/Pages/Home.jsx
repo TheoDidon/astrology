@@ -16,9 +16,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const { isFrench } = useLanguage();
+
   return (
     <main className="flex flex-col overflow-hidden">
-      <Navbar isFrench={isFrench} />
+      <Navbar
+        isFrench={isFrench}
+        refreshToken={localStorage.getItem("refreshToken")}
+      />
       <Description isFrench={isFrench} />
       <div className="flex flex-col justify-center items-center">
         {isFrench

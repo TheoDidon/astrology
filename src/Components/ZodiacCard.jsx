@@ -33,7 +33,11 @@ function ZodiacCard({ sign }) {
         end: "bottom 30%",
       },
     });
+
+    ScrollTrigger.refresh();
+
     if (isMobile) {
+      console.log("mobile anim");
       tl.from(imageRef.current, {
         y: -100,
         duration: 1,
@@ -53,6 +57,7 @@ function ZodiacCard({ sign }) {
         yoyo: true,
       });
     } else {
+      console.log("isMobile");
       tl.from(imageRef.current, {
         y: 500,
         duration: 1,
@@ -74,7 +79,10 @@ function ZodiacCard({ sign }) {
         ease: "ease-in-out",
       });
     }
-  });
+    return () => {
+      tl.kill();
+    };
+  }, [isMobile]);
 
   function leftImage() {
     return (
