@@ -12,6 +12,8 @@ const baseQuery = fetchBaseQuery({
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
+    headers.set("Access-Control-Allow-Origin", "https://theodidon.github.io");
+    headers.set("Access-Control-Allow-Credentials", "true");
     return headers;
   },
 });
